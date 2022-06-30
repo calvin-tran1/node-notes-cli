@@ -31,3 +31,17 @@ if (operator === 'delete') {
     }
   }
 }
+
+if (operator === 'update') {
+  for (let i in data.notes) {
+    if (process.argv[3] === i) {
+      data.notes[i] = process.argv[4];
+      fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
+        if (err) {
+          console.error(err);
+          process.exit(1);
+        }
+      })
+    }
+  }
+}
